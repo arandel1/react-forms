@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-function SignUpForm () {
+function SignUpForm ({ setToken }) {
 
-  const [username, setUsername] = useState();
-  const [password, setPassword] = useState();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
   async function handleSubmit(e) {
@@ -23,6 +23,7 @@ function SignUpForm () {
       }
       )
       const result = await reponse.json();
+      setToken(result.token);
       console.log(result)
     } catch(error) {
       setError(error.message);
