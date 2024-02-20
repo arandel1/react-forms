@@ -37,15 +37,27 @@ function SignUpForm ({ setToken }) {
       <form onSubmit={handleSubmit}>
 
         <label>
-          Username:<input value={username} onChange={(e) => setUsername (e.target.value)}/>
+          Username: 
+          <input value={username} onChange={(e) => setUsername (e.target.value)}/>
         </label>
+
+        <br/>
+        <br/>
 
         <label>
-          Password:<input value={password} onChange={(e) => setPassword (e.target.value)}/>
+          Password:<input type = "password" value={password} onChange={(e) => setPassword (e.target.value)}/>
         </label>
+        
+        <div className="condition">
+        {password.length < 10
+            ? <p> Password must be greater than 10 characters </p>
+            : null}
+        </div>
+
+        <br/>
 
         <button>Submit</button>
-
+        <br/>
       </form>
     </>
   )
