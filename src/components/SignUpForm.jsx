@@ -8,16 +8,30 @@ function SignUpForm () {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log("Hello!");
+    // console.log("Hello!");
     try {
-
+      const reponse = await fetch("https://fsa-jwt-practice.herokuapp.com/signup",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: username,
+          password: "password"
+        })
+      }
+      )
+      const result = await reponse.json();
+      console.log(result)
     } catch(error) {
-      console.log(error)
+      setError(error.message);
     }
   }
   return(
     <>
       <h2>Sign Up</h2>
+      {error && <p>{error}</p>}
       
       <form onSubmit={handleSubmit}>
 
